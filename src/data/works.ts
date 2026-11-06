@@ -59,4 +59,21 @@ export const works: Work[] = [
     tint: "#EEF7FA",
     draft: true,
   },
+  {
+    slug: "woojin-ortho",
+    title: "우진 정형외과",
+    category: "정형외과",
+    short: "척추 · 관절, 미세수술, 재활 센터를 소개하는 병원 사이트",
+    summary:
+      "척추 · 관절, 미세수술, 재활 세 진료센터를 갖춘 정형외과의 원페이지 사이트입니다. 대표원장 소개, 센터별 대표 질환, 처음 오는 환자를 위한 진료 과정, 병원 내부 사진, 진료시간과 오시는 길, 자주 묻는 질문을 담았습니다. 진료시간 요약에는 지금 진료 중인지 표시하고, 모든 문의는 전화 상담으로 바로 이어지도록 했습니다.",
+    captures: [
+      { label: "전체", src: "/works/woojin-ortho/full.jpg", width: 1280, height: 7202 },
+      { label: "메인 · 원장", src: "/works/woojin-ortho/home.jpg", width: 1280, height: 1769 },
+      { label: "진료센터", src: "/works/woojin-ortho/centers.jpg", width: 1280, height: 1866 },
+      { label: "진료 과정 · 둘러보기", src: "/works/woojin-ortho/tour.jpg", width: 1280, height: 1444 },
+      { label: "오시는 길 · 상담", src: "/works/woojin-ortho/visit.jpg", width: 1280, height: 2120 },
+    ],
+    tint: "#EEF4FB",
+    draft: true,
+  },
 ];
