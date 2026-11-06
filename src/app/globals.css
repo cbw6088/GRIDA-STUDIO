@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  /* 초록빛이 살짝 도는 잉크 */
+  --color-ink: #17201b;
+  --color-slate: #56625b;
+  --color-mute: #96a199;
+  /* 화이트 · 연한 그레이 */
+  --color-paper: #ffffff;
+  --color-mist: #f5f7f5;
+  --color-haze: #ebf0ec;
+  --color-line: #e1e7e2;
+  /* 초록: 연한 세이지 → 깊은 숲색 */
+  --color-tone: #d6e6db;
+  --color-sage: #a8c8b3;
+  --color-tone-deep: #4e7c63;
+  --color-forest: #24523e;
+  /* 로고 쉼표 전용 */
+  --color-accent: #ff6b3d;
+
+  --font-sans: var(--font-pretendard), -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(23 32 27 / 0.04), 0 10px 30px -12px rgb(23 32 27 / 0.14);
+  --shadow-float: 0 2px 6px rgb(23 32 27 / 0.05), 0 24px 48px -20px rgb(36 82 62 / 0.28);
+}
+
+/* 알약 모양 버튼 (참고 시안의 흰 버튼) */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.85rem 1.6rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* 주요 버튼: 깊은 초록 그라데이션 */
+@utility btn-primary {
+  background-image: linear-gradient(135deg, #3a7a5b 0%, #24523e 55%, #1b3f30 100%);
+  color: #fff;
+  box-shadow: 0 1px 2px rgb(23 32 27 / 0.06), 0 10px 24px -10px rgb(36 82 62 / 0.55);
+  &:hover {
+    box-shadow: 0 2px 6px rgb(23 32 27 / 0.06), 0 18px 36px -14px rgb(36 82 62 / 0.6);
+  }
+}
+
+/* 보조 버튼: 흰 알약 */
+@utility btn-ghost {
+  background: #fff;
+  color: var(--color-ink);
+  box-shadow: var(--shadow-soft);
+  &:hover {
+    box-shadow: var(--shadow-float);
+  }
+}
+
+/* 제목 한 단어에 은은한 초록 그라데이션 */
+@utility text-grad {
+  background-image: linear-gradient(120deg, #17201b 0%, #2f6a4f 60%, #6fa486 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 섹션 제목: 넓은 자간 */
+@utility title-wide {
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+html {
+  scroll-behavior: smooth;
+  word-break: keep-all;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-sage);
+  color: var(--color-ink);
+}
+
+/* 포트폴리오 목록 스크롤바 */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
