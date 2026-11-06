@@ -40,4 +40,20 @@ export const works: Work[] = [
     ],
     tint: "#F3EFEA",
   },
+  {
+    slug: "neighbor-dog",
+    title: "이웃집 강아지",
+    category: "반려견 미용실",
+    short: "1:1 예약제 소형견 미용실의 원페이지 사이트",
+    summary:
+      "망원동 1:1 반려견 미용실을 소개하는 원페이지 사이트입니다. 서비스 안내, 좋은 이유, 이용 순서, 스타일 예시, 몸무게별 요금표, 미용 전 주의사항, 자주 묻는 질문, 지도와 예약 문의를 한 페이지에 담았습니다. 하늘색 물방울 사진과 원형 아이콘으로 밝고 친근하게 구성하고, 모바일에서는 하단에 예약 버튼을 고정했습니다.",
+    captures: [
+      { label: "전체", src: "/works/neighbor-dog/full.jpg", width: 1280, height: 6095 },
+      { label: "메인", src: "/works/neighbor-dog/home.jpg", width: 1280, height: 1551 },
+      { label: "서비스", src: "/works/neighbor-dog/service.jpg", width: 1280, height: 1561 },
+      { label: "요금", src: "/works/neighbor-dog/price.jpg", width: 1280, height: 1181 },
+      { label: "안내 · 문의", src: "/works/neighbor-dog/contact.jpg", width: 1280, height: 1850 },
+    ],
+    tint: "#EEF7FA",
+  },
 ];
