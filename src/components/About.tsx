@@ -1,5 +1,5 @@
 import { Comma, Mark } from "@/components/Mark";
-import { QUOTE_HREF } from "@/data/site";
+import { QuoteButton } from "@/components/QuoteModal";
 
 const stack = ["WordPress", "블록 테마", "Next.js", "Tailwind CSS", "반응형 디자인"];
 
@@ -26,9 +26,9 @@ export function About() {
               </li>
             ))}
           </ul>
-          <a href={QUOTE_HREF} className="btn btn-primary mt-10">
+          <QuoteButton className="btn btn-primary mt-10">
             무료 견적 요청 <span aria-hidden>→</span>
-          </a>
+          </QuoteButton>
         </div>
       </div>
     </section>

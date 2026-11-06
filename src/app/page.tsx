@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Intro } from "@/components/Intro";
 import { Portfolio } from "@/components/Portfolio";
 import { Process } from "@/components/Process";
+import { QuoteModal } from "@/components/QuoteModal";
 import { works } from "@/data/works";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
         <About />
       </main>
       <Footer />
+      <QuoteModal />
     </>
   );
 }

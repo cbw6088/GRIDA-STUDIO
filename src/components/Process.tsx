@@ -1,4 +1,4 @@
-import { QUOTE_HREF } from "@/data/site";
+import { QuoteButton } from "@/components/QuoteModal";
 
 const steps = [
   {
@@ -52,9 +52,9 @@ export function Process() {
             <h2 className="title-wide text-3xl text-ink sm:text-4xl">서비스 절차</h2>
             <p className="mt-3 text-sm tracking-wide text-mute">문의부터 오픈까지, 이렇게 함께 그려 갑니다</p>
           </div>
-          <a href={QUOTE_HREF} className="btn btn-ghost self-start sm:self-auto">
+          <QuoteButton className="btn btn-ghost self-start sm:self-auto">
             의뢰서 받기
-          </a>
+          </QuoteButton>
         </div>
         <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (

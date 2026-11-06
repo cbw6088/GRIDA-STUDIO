@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { Shot } from "@/components/Shot";
-import { QUOTE_HREF } from "@/data/site";
+import { QuoteButton } from "@/components/QuoteModal";
 import type { Work } from "@/data/works";
 
 /** 왼쪽 목록 한 칸 높이(px). 4칸이 보이고 나머지는 스크롤됩니다. */
@@ -48,7 +49,7 @@ export function Portfolio({ works }: { works: Work[] }) {
                         <span className="mt-1 line-clamp-1 text-xs text-ink/55">{item.short}</span>
                       </span>
                       <Shot
-                        src={item.thumbnail ?? item.preview}
+                        src={item.captures[0]?.src}
                         alt=""
                         tint={item.tint}
                         sizes="120px"
@@ -61,52 +62,93 @@ export function Portfolio({ works }: { works: Work[] }) {
                 );
               })}
             </ul>
+            <p className="mt-6 text-xs text-mute">작업이 생기는 대로 하나씩 더해 갑니다.</p>
           </div>
 
-          {/* 오른쪽: 미리보기 */}
-          {w && (
-            <div className="rounded-[40px] bg-gradient-to-br from-mist via-mist to-tone/60 p-5 sm:p-8">
-              <Shot
-                key={w.slug}
-                src={w.preview}
-                alt={`${w.title} 미리보기`}
-                tint={w.tint}
-                label="미리보기 준비 중"
-                className="aspect-[16/10] w-full rounded-[28px] bg-white shadow-soft"
-              />
-              <div className="mt-8 grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
-                <div>
-                  <p className="text-[11px] font-semibold tracking-[0.12em] text-tone-deep">{w.category}</p>
-                  <h3 className="title-wide mt-2 text-2xl">{w.title}</h3>
-                  <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink/60">{w.summary}</p>
-                  <ul className="mt-5 flex flex-wrap gap-2">
-                    {w.pages.map((p) => (
-                      <li key={p} className="rounded-full bg-white px-3 py-1 text-xs text-ink/60 shadow-soft">
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex gap-3 sm:flex-col">
-                  {w.url && (
-                    <a
-                      href={w.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-ghost"
-                    >
-                      사이트 보기 ↗
-                    </a>
-                  )}
-                  <a href={QUOTE_HREF} className="btn btn-primary">
-                    이런 사이트 견적 받기
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
+          {/* 오른쪽: 미리보기 (작업이 바뀌면 탭도 처음으로) */}
+          {w && <Preview key={w.slug} work={w} />}
         </div>
       </div>
     </section>
+  );
+}
+
+function Preview({ work: w }: { work: Work }) {
+  const [page, setPage] = useState(0);
+  const cap = w.captures[page];
+
+  return (
+    <div className="rounded-[40px] bg-gradient-to-br from-mist via-mist to-tone/60 p-5 sm:p-8">
+      {/* 페이지 탭 */}
+      {w.captures.length > 1 && (
+        <div className="mb-4 flex flex-wrap gap-2" role="tablist" aria-label={`${w.title} 페이지`}>
+          {w.captures.map((c, i) => (
+            <button
+              key={c.src}
+              type="button"
+              role="tab"
+              aria-selected={i === page}
+              onClick={() => setPage(i)}
+              className={`rounded-full px-4 py-1.5 text-xs tracking-wide transition ${
+                i === page ? "bg-forest text-white shadow-soft" : "bg-white/80 text-slate hover:bg-white"
+              }`}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* 브라우저 창 안에서 페이지 전체를 스크롤해서 볼 수 있어요 */}
+      <div className="overflow-hidden rounded-[28px] bg-white shadow-soft">
+        <div className="flex items-center gap-1.5 border-b border-line px-5 py-3">
+          <span className="size-2.5 rounded-full bg-line" />
+          <span className="size-2.5 rounded-full bg-line" />
+          <span className="size-2.5 rounded-full bg-line" />
+          <span className="ml-3 truncate text-[11px] text-mute">
+            {w.title} · {cap?.label}
+          </span>
+        </div>
+        <div
+          key={cap?.src}
+          className="thin-scroll aspect-[16/11] overflow-y-auto"
+          style={{ background: w.tint }}
+          tabIndex={0}
+          aria-label={`${w.title} ${cap?.label} 화면 (스크롤해서 전체 보기)`}
+        >
+          {cap ? (
+            <Image
+              src={cap.src}
+              alt={`${w.title} ${cap.label} 화면`}
+              width={cap.width}
+              height={cap.height}
+              sizes="(min-width: 1024px) 640px, 100vw"
+              className="block h-auto w-full"
+            />
+          ) : (
+            <Shot alt={`${w.title} 미리보기`} tint={w.tint} label="미리보기 준비 중" className="h-full w-full" />
+          )}
+        </div>
+      </div>
+      <p className="mt-3 text-right text-[11px] text-mute">화면 안에서 스크롤하면 페이지 전체를 볼 수 있어요</p>
+
+      <div className="mt-6 grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
+        <div>
+          <p className="text-[11px] font-semibold tracking-[0.12em] text-tone-deep">{w.category}</p>
+          <h3 className="title-wide mt-2 text-2xl">{w.title}</h3>
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink/60">{w.summary}</p>
+        </div>
+        <div className="flex gap-3 sm:flex-col">
+          {w.url && (
+            <a href={w.url} target="_blank" rel="noreferrer" className="btn btn-ghost">
+              사이트 보기 ↗
+            </a>
+          )}
+          <QuoteButton className="btn btn-primary">
+            이런 사이트 견적 받기
+          </QuoteButton>
+        </div>
+      </div>
+    </div>
   );
 }

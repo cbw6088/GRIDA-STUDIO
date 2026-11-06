@@ -1,5 +1,6 @@
 import { Comma, Mark } from "@/components/Mark";
-import { EMAIL, NAV, QUOTE_HREF } from "@/data/site";
+import { QuoteButton } from "@/components/QuoteModal";
+import { EMAIL, NAV } from "@/data/site";
 
 export function Footer() {
   return (
@@ -38,9 +39,9 @@ export function Footer() {
                   </a>
                 </li>
               </ul>
-              <a href={QUOTE_HREF} className="btn btn-ghost mt-6 px-5 py-2.5 text-[13px]">
+              <QuoteButton className="btn btn-ghost mt-6 px-5 py-2.5 text-[13px]">
                 무료 견적 요청
-              </a>
+              </QuoteButton>
             </div>
           </div>
         </div>
