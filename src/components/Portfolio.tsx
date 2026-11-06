@@ -50,6 +50,7 @@ export function Portfolio({ works }: { works: Work[] }) {
                       <span className="flex-1">
                         <span className="block text-[11px] font-semibold tracking-[0.12em] text-tone-deep">
                           {item.category}
+                          {item.draft && <DraftBadge />}
                         </span>
                         <span className="mt-1 block text-[15px] font-semibold tracking-wide">{item.title}</span>
                         <span className="mt-1 line-clamp-1 text-xs text-ink/55">{item.short}</span>
@@ -75,6 +76,17 @@ export function Portfolio({ works }: { works: Work[] }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function DraftBadge() {
+  return (
+    <span
+      title="실제 업체가 아닌, 업종을 가정해 기획부터 디자인까지 진행한 시안이에요"
+      className="ml-1.5 inline-flex items-center rounded-full border border-line bg-white px-2 py-0.5 align-middle text-[10px] font-semibold tracking-normal text-mute"
+    >
+      시안
+    </span>
   );
 }
 
@@ -140,8 +152,16 @@ function Preview({ work: w }: { work: Work }) {
       <div className="mt-6 grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
         <div>
           <p className="text-[11px] font-semibold tracking-[0.12em] text-tone-deep">{w.category}</p>
-          <h3 className="title-wide mt-2 text-2xl">{w.title}</h3>
+          <h3 className="title-wide mt-2 flex items-center gap-1 text-2xl">
+            {w.title}
+            {w.draft && <DraftBadge />}
+          </h3>
           <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink/60">{w.summary}</p>
+          {w.draft && (
+            <p className="mt-3 max-w-lg text-xs leading-relaxed text-mute">
+              실제 업체가 아닌, 업종을 가정해 기획부터 디자인까지 진행한 시안이에요.
+            </p>
+          )}
         </div>
         {w.url && (
           <a href={w.url} target="_blank" rel="noreferrer" className="btn btn-ghost self-start">

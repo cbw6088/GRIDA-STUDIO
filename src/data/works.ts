@@ -21,6 +21,8 @@ export type Work = {
   url?: string;
   /** 이미지가 뜨기 전 배경색 */
   tint: string;
+  /** 실제 업체가 아닌 가상 업체로 만든 작업이면 true ("시안" 배지 표시) */
+  draft?: boolean;
 };
 
 // 새 포트폴리오: 캡처를 public/works/<slug>/ 에 넣고 아래 배열에 항목을 추가하세요.
@@ -55,5 +57,6 @@ export const works: Work[] = [
       { label: "안내 · 문의", src: "/works/neighbor-dog/contact.jpg", width: 1280, height: 1850 },
     ],
     tint: "#EEF7FA",
+    draft: true,
   },
 ];
