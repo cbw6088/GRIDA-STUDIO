@@ -21,8 +21,12 @@ export function Hero() {
             <span className="text-grad">그립니다</span>
             <Comma className="ml-1 h-[0.55em] w-auto" />
           </h1>
-          <p className="mt-7 max-w-md text-[15px] leading-loose text-slate">
-            하얀 도화지에 그림을 그리듯, 가게와 회사의 이야기를 한 장의 화면으로 그려 냅니다.
+          {/* PC·태블릿은 두 줄, 모바일은 뜻 단위로 세 줄 */}
+          <p className="mt-6 text-[14px] leading-[1.9] text-slate sm:mt-7 sm:text-[15px]">
+            하얀 도화지에 그림을 그리듯,
+            <br />
+            가게와 회사의 이야기를
+            <br className="sm:hidden" /> 한 장의 화면으로 그려 냅니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <QuoteButton className="btn btn-primary">무료 견적 요청</QuoteButton>
