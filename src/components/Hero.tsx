@@ -11,11 +11,11 @@ const shots = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden rounded-b-[48px] bg-[radial-gradient(120%_90%_at_85%_10%,#e2efe6_0%,#f3f7f4_45%,#ffffff_80%)] pb-24 pt-36 sm:rounded-b-[72px]">
+    <section className="relative overflow-hidden rounded-b-[48px] bg-[radial-gradient(120%_90%_at_85%_10%,#e2efe6_0%,#f3f7f4_45%,#ffffff_80%)] pb-14 pt-28 sm:pb-20 sm:pt-36 sm:rounded-b-[72px]">
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-[1fr_1.1fr]">
         <div>
           <p className="text-xs font-semibold tracking-[0.4em] text-mute">GRIDA STUDIO</p>
-          <h1 className="mt-6 text-5xl font-semibold leading-[1.2] tracking-[0.04em] text-ink sm:text-6xl">
+          <h1 className="mt-5 text-[2.25rem] font-semibold leading-[1.25] tracking-[0.03em] text-ink sm:mt-6 sm:text-5xl lg:text-6xl">
             웹사이트를
             <br />
             <span className="text-grad">그립니다</span>

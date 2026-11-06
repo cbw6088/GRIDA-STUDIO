@@ -5,7 +5,7 @@ const tints = ["#E8EFEA", "#E8EFEA", "#E8EFEA"];
 
 export function Intro() {
   return (
-    <section id="intro" className="scroll-mt-10 py-28">
+    <section id="intro" className="scroll-mt-10 py-16 sm:py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-6 px-6 lg:grid-cols-[1fr_1.15fr_0.55fr]">
         <div className="lg:pr-6">
           <h2 className="title-wide text-3xl text-ink sm:text-4xl">소개</h2>

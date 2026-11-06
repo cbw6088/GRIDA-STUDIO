@@ -5,9 +5,9 @@ const stack = ["WordPress", "블록 테마", "Next.js", "Tailwind CSS", "반응�
 
 export function About() {
   return (
-    <section id="about" className="scroll-mt-10 py-28">
+    <section id="about" className="scroll-mt-10 py-16 sm:py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.8fr_1.2fr]">
-        <div className="flex aspect-square max-w-sm items-center justify-center rounded-[48px] bg-[radial-gradient(circle_at_30%_25%,#ffffff_0%,#e4efe8_55%,#cfe2d6_100%)] shadow-soft">
+        <div className="hidden aspect-square max-w-sm items-center justify-center rounded-[48px] md:flex bg-[radial-gradient(circle_at_30%_25%,#ffffff_0%,#e4efe8_55%,#cfe2d6_100%)] shadow-soft">
           <Mark className="w-1/2 text-ink" />
         </div>
         <div>

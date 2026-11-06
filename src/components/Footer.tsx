@@ -1,11 +1,10 @@
 import { Comma, Mark } from "@/components/Mark";
-import { QuoteButton } from "@/components/QuoteModal";
 import { EMAIL, NAV } from "@/data/site";
 
 export function Footer() {
   return (
-    <footer className="mt-10 rounded-t-[48px] bg-[linear-gradient(160deg,#1f3a2d_0%,#17201b_70%)] text-white sm:rounded-t-[72px]">
-      <div className="mx-auto max-w-6xl px-6 pb-10 pt-20">
+    <footer className="mt-6 rounded-t-[48px] bg-[linear-gradient(160deg,#1f3a2d_0%,#17201b_70%)] text-white sm:rounded-t-[72px]">
+      <div className="mx-auto max-w-6xl px-6 pb-10 pt-14 sm:pt-16">
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           <div>
             <div className="flex items-center gap-3">
@@ -39,13 +38,10 @@ export function Footer() {
                   </a>
                 </li>
               </ul>
-              <QuoteButton className="btn btn-ghost mt-6 px-5 py-2.5 text-[13px]">
-                무료 견적 요청
-              </QuoteButton>
             </div>
           </div>
         </div>
-        <p className="mt-16 border-t border-white/10 pt-6 text-xs text-white/40">© 2026 그리다, 스튜디오</p>
+        <p className="mt-12 border-t border-white/10 pt-6 text-xs text-white/40">© 2026 그리다, 스튜디오</p>
       </div>
     </footer>
   );

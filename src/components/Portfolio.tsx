@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Shot } from "@/components/Shot";
-import { QuoteButton } from "@/components/QuoteModal";
 import type { Work } from "@/data/works";
 
-/** 왼쪽 목록 한 칸 높이(px). 4칸이 보이고 나머지는 스크롤됩니다. */
+/** PC 왼쪽 목록 한 칸 높이(px). 4칸이 보이고 나머지는 아래로 스크롤됩니다. */
 const ITEM_H = 112;
 const GAP = 12;
 const VISIBLE = 4;
@@ -16,23 +15,30 @@ export function Portfolio({ works }: { works: Work[] }) {
   const w = works[active];
 
   return (
-    <section id="portfolio" className="scroll-mt-10 py-28">
+    <section id="portfolio" className="scroll-mt-10 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.4fr]">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.4fr] lg:gap-10">
           {/* 왼쪽: 목록 */}
           <div>
             <h2 className="title-wide text-3xl text-ink sm:text-4xl">포트폴리오</h2>
             <p className="mt-3 text-sm tracking-wide text-mute">업종별로 그려 낸 작업들</p>
 
+            {/* 모바일 · 태블릿: 옆으로 넘기는 카드 / PC: 세로 목록 (4개까지 보이고 아래로 스크롤) */}
             <ul
-              className="thin-scroll mt-10 flex flex-col overflow-y-auto pr-2"
-              style={{ gap: GAP, maxHeight: ITEM_H * VISIBLE + GAP * (VISIBLE - 1) }}
+              className="thin-scroll -mx-6 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 [scrollbar-width:none] lg:mx-0 lg:mt-10 lg:max-h-[var(--list-h)] lg:snap-none lg:flex-col lg:overflow-x-visible lg:overflow-y-auto lg:px-0 lg:pb-0 lg:pr-2 lg:[scrollbar-width:thin]"
+              style={{ gap: GAP, "--list-h": `${ITEM_H * VISIBLE + GAP * (VISIBLE - 1)}px` } as CSSProperties}
               aria-label="포트폴리오 목록"
             >
               {works.map((item, i) => {
                 const on = i === active;
                 return (
-                  <li key={item.slug} style={{ minHeight: ITEM_H }}>
+                  <li
+                    key={item.slug}
+                    className={`shrink-0 snap-start lg:min-h-[var(--item-h)] lg:w-auto ${
+                      works.length === 1 ? "w-full" : "w-[82%] sm:w-[48%]"
+                    }`}
+                    style={{ "--item-h": `${ITEM_H}px` } as CSSProperties}
+                  >
                     <button
                       type="button"
                       onClick={() => setActive(i)}
@@ -62,7 +68,6 @@ export function Portfolio({ works }: { works: Work[] }) {
                 );
               })}
             </ul>
-            <p className="mt-6 text-xs text-mute">작업이 생기는 대로 하나씩 더해 갑니다.</p>
           </div>
 
           {/* 오른쪽: 미리보기 (작업이 바뀌면 탭도 처음으로) */}
@@ -138,16 +143,11 @@ function Preview({ work: w }: { work: Work }) {
           <h3 className="title-wide mt-2 text-2xl">{w.title}</h3>
           <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink/60">{w.summary}</p>
         </div>
-        <div className="flex gap-3 sm:flex-col">
-          {w.url && (
-            <a href={w.url} target="_blank" rel="noreferrer" className="btn btn-ghost">
-              사이트 보기 ↗
-            </a>
-          )}
-          <QuoteButton className="btn btn-primary">
-            이런 사이트 견적 받기
-          </QuoteButton>
-        </div>
+        {w.url && (
+          <a href={w.url} target="_blank" rel="noreferrer" className="btn btn-ghost self-start">
+            사이트 보기 ↗
+          </a>
+        )}
       </div>
     </div>
   );

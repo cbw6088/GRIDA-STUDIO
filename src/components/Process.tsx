@@ -1,6 +1,6 @@
-import { QuoteButton } from "@/components/QuoteModal";
+import { StepsSlider, type Step } from "@/components/StepsSlider";
 
-const steps = [
+const steps: Step[] = [
   {
     step: "01",
     title: "의뢰서 작성",
@@ -45,18 +45,13 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="scroll-mt-10 rounded-[48px] bg-gradient-to-b from-mist to-haze py-28 sm:rounded-[72px]">
+    <section id="process" className="scroll-mt-10 rounded-[48px] bg-gradient-to-b from-mist to-haze py-16 sm:rounded-[72px] sm:py-20">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="title-wide text-3xl text-ink sm:text-4xl">서비스 절차</h2>
-            <p className="mt-3 text-sm tracking-wide text-mute">문의부터 오픈까지, 이렇게 함께 그려 갑니다</p>
-          </div>
-          <QuoteButton className="btn btn-ghost self-start sm:self-auto">
-            의뢰서 받기
-          </QuoteButton>
-        </div>
-        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="title-wide text-3xl text-ink sm:text-4xl">서비스 절차</h2>
+        <p className="mt-3 text-sm tracking-wide text-mute">문의부터 오픈까지, 이렇게 함께 그려 갑니다</p>
+
+        {/* PC: 4칸씩 두 줄 */}
+        <ol className="mt-10 hidden gap-5 lg:grid lg:grid-cols-4">
           {steps.map((s) => (
             <li key={s.step} className="rounded-[28px] bg-white p-8 shadow-soft">
               <span className="text-xs font-semibold tracking-[0.2em] text-tone-deep">{s.step}</span>
@@ -65,6 +60,9 @@ export function Process() {
             </li>
           ))}
         </ol>
+
+        {/* 모바일 · 태블릿: 두 개씩 옆으로 넘기기 */}
+        <StepsSlider steps={steps} className="mt-8 lg:hidden" />
       </div>
     </section>
   );

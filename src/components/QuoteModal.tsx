@@ -227,7 +227,7 @@ export function QuoteModal() {
                 placeholder="필요한 페이지, 꼭 넣고 싶은 내용, 궁금한 점을 자유롭게 적어 주세요."
                 value={f.message}
                 onChange={set("message")}
-                className={`${input} resize-none py-3`}
+                className={textarea}
               />
             </Field>
 
@@ -326,8 +326,10 @@ function References({ value, onChange }: { value: string[]; onChange: (v: string
   );
 }
 
-const input =
-  "h-11 w-full rounded-2xl border border-line bg-white px-4 text-sm outline-none transition placeholder:text-mute focus:border-tone-deep focus:ring-4 focus:ring-tone/60";
+const field =
+  "w-full rounded-2xl border border-line bg-white px-4 text-sm outline-none transition placeholder:text-mute focus:border-tone-deep focus:ring-4 focus:ring-tone/60";
+const input = `h-11 ${field}`;
+const textarea = `${field} block min-h-32 resize-none py-3 leading-relaxed`;
 
 function Field({
   label,
